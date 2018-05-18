@@ -8,8 +8,8 @@ Dependence         |Version
 Webpack            |4.8+
 
 ## What can it do?
-Some JavaScript Examples, ES6 Modules
-> 一些 JavaScript 例子、ES6 模块
+Some JavaScript Examples, ES6 Modules, Hot loading
+> 一些 JavaScript 例子、ES6 模块、热加载
 
 Some pictures, fonts, style files
 > 一些图片、字体、样式文件
@@ -45,5 +45,5 @@ npm run build
 ```
 
 
-##LICENSE
+## LICENSE
 [MIT](LICENSE)

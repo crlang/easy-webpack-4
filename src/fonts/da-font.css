@@ -1,0 +1,17 @@
+@font-face {font-family: "da-font";
+  src: url('./da-font.eot'); /* IE9*/
+  src: url('./da-font.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('./da-font.woff') format('woff'),
+  url('./da-font.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('./da-font.svg#da-font') format('svg'); /* iOS 4.1- */
+}
+
+.da-font {
+  font-family:"da-font" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dalanglogo:before { content: "\e607"; }

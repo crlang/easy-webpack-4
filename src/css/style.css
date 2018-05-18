@@ -1,0 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #3abc9d url(../images/bg.png) center center no-repeat;
+}

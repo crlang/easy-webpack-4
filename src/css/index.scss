@@ -1,0 +1,24 @@
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
+  font-size: 36px;
+  text-align: center;
+  text-transform: capitalize;
+  i {
+    display: contents;
+    &.da-font {
+      display: block;
+      width: 100%;
+      font-size: 64px;
+      color: #3abc9d;
+    }
+  }
+  p {
+    width: 100%;
+  }
+}

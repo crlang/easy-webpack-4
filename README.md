@@ -35,9 +35,6 @@ enjoy !
 npm install
 
 # serve with hot reload at localhost:8088
-npm run strat
-
-#  build for development
 npm run dev
 
 # build mini for production

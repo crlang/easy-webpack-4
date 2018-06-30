@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HTMLPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // test you proxy url
 const CrossDomainURL = "https://www.darlang.com";
@@ -23,32 +23,41 @@ const config = {
     rules: [{// loader js
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
-      options: {
-        presets: ['env']
-      }
+      use: [
+        {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              ["env", {
+                "targets": {
+                  "browsers": ["last 15 versions", "safari >= 4","not ie < 9", "iOS >= 7"]
+                }
+              }],
+            ],
+          }
+        }
+      ]
     },{// loader sass and css
       test: /\.(scss|css)$/,
-      use: ExtractTextPlugin.extract({
-        use: [{
-          loader: "css-loader",
-          options: {// some options
-            sourceMap: true,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader?modules=false',
+          options: {
+            importLoaders: 1,
             minimize: true
           }
-        }, {// fix the css3
-          loader: "postcss-loader",
+        },
+        {
+          loader: 'postcss-loader',
           options: {
-            sourceMap: true
-          }
-        },{
-          loader: "sass-loader",
-          options: {
-            sourceMap: true
-          }
-        }],
-        fallback: "style-loader"
-      })
+            config: {
+              path: path.resolve(__dirname, './postcss.config.js')
+            }
+          },
+        },
+        "sass-loader"
+      ]
     }, {
       test: /\.(jpg|png|ico|jpeg|gif)$/,
       use: [{
@@ -92,9 +101,9 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin({// defining the css output file
-      filename: './css/style.css',
-      allChunks: true
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     }),
     new HTMLPlugin({// specify index.html file
       template: 'index.html'

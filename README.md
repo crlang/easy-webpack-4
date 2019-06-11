@@ -7,6 +7,11 @@ Dependence         |Version
 -------------------|-------
 Webpack            |4.8+
 
+
+## Demo
+[DEMO](https://crlang.github.io/VueWPress)
+
+
 ## What can it do?
 Some JavaScript Examples, ES6 Modules, Hot loading
 > 一些 JavaScript 例子、ES6 模块、热加载

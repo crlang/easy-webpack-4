@@ -1,4 +1,4 @@
-// export the function
+// e.g. export the function
 export function addNewHi() {
   let newDiv = document.createElement("H1");
   newDiv.setAttribute("class","hello-world");
@@ -7,7 +7,7 @@ export function addNewHi() {
   return newDiv;
 }
 
-// Define and export
+// e.g. Define and export
 let lll = "<i class=\"da-font icon-dalanglogo\"></i>";
 
 export {lll};

@@ -20,7 +20,7 @@ A simple cross-domain proxy
 Automatically package and separate js/css/image/font
 > 自动打包并分离 js/css/image/font
 
-Automatically convert ES6 to EC5 version
+Automatically convert ES6/x to EC5 version
 > 自动转换 ES6 为 EC5 版本
 
 Automatically fix CSS3 compatibility
@@ -36,6 +36,9 @@ npm install
 
 # serve with hot reload at localhost:8088
 npm run dev
+
+# build for development
+npm run build:dev
 
 # build mini for production
 npm run build

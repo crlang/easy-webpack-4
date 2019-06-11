@@ -1,63 +1,44 @@
+require('babel-polyfill');
 const webpack = require('webpack');
 const path = require('path');
-const HTMLPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const apis = require('./src/js/api');
 // test you proxy url
-const CrossDomainURL = "https://www.darlang.com";
+const CrossDomainURL = apis.CrossDomainURL;
 
 // setting webpack config
 const config = {
   target: "web",
   devtool: "#source-map", // output mode
   entry: {// multiple entry
-    index: "./src/index.js",
+    index: ["babel-polyfill","./src/index.js"],
     utils: "./src/js/utils.js"
   },
   output: {// output config
-    filename: './js/[name].[hash].js',
-    chunkFilename: './js/[name].[hash].js',
+    filename: './js/[name].js',
+    chunkFilename: './js/[name].js',
     path: path.resolve(__dirname, 'dist')
+  },
+  stats: {
+    entrypoints: false,
+    children: false
   },
   module: {
     rules: [{// loader js
       test: /\.js$/,
       exclude: /node_modules/,
-      use: [
-        {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              ["env", {
-                "targets": {
-                  "browsers": ["last 15 versions", "safari >= 4","not ie < 9", "iOS >= 7"]
-                }
-              }],
-            ],
-          }
-        }
-      ]
+      loader: 'babel-loader'
     },{// loader sass and css
-      test: /\.(scss|css)$/,
+      test: /\.(sa|sc|c)ss$/,
       use: [
-        MiniCssExtractPlugin.loader,
         {
-          loader: 'css-loader?modules=false',
-          options: {
-            importLoaders: 1,
-            minimize: true
-          }
+          loader: MiniCssExtractPlugin.loader,
         },
-        {
-          loader: 'postcss-loader',
-          options: {
-            config: {
-              path: path.resolve(__dirname, './postcss.config.js')
-            }
-          },
-        },
-        "sass-loader"
-      ]
+        'css-loader',
+        'postcss-loader',
+        'sass-loader'
+      ],
     }, {
       test: /\.(jpg|png|ico|jpeg|gif)$/,
       use: [{
@@ -102,12 +83,17 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "./css/[name].css",
+      chunkFilename: "./css/[id].css"
     }),
-    new HTMLPlugin({// specify index.html file
-      template: 'index.html'
-    })
+    new HtmlWebpackPlugin({
+      filename: './index.html',
+      template: './index.html',
+      hash: true,
+      inject: true,
+      favicon: './favicon.ico',
+      title: 'easy-webpack-4'
+    }),
   ]
 };
 

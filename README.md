@@ -9,7 +9,7 @@ Webpack            |4.8+
 
 
 ## Demo
-[DEMO](https://crlang.github.io/VueWPress)
+[DEMO](https://crlang.github.io/easy-webpack-4)
 
 
 ## What can it do?
